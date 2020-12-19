@@ -1,0 +1,13 @@
+@import 'style/_variables.css';
+@import 'style/_fonts.css';
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 1.6rem;
+  font-family: 'Blender Pro', sans-serif;
+  background-color: var(--background-color);
+  color: var(--yellow);
+}

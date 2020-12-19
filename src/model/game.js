@@ -1,3 +1,5 @@
+import { makeAutoObservable } from 'mobx';
+
 const states = Object.freeze({
   created: 'CREATED',
   started: 'STARTED',
@@ -25,6 +27,8 @@ class Game {
     this.matrix = matrix;
     this.selectedIndex = 0;
     this.history = [];
+
+    makeAutoObservable(this);
   }
 
   get state() {
@@ -61,10 +65,10 @@ class Game {
     }
 
     const value = this.matrix[x][y];
-    this.selectedIndex = this.selectionMode === selectionModes.row ? y : x;
-    this.history.push(`${x}:${y}`);
 
+    this.selectedIndex = this.selectionMode === selectionModes.row ? y : x;
     this.buffer.addEntry(value);
+    this.history.push(`${x}:${y}`);
 
     return value;
   }

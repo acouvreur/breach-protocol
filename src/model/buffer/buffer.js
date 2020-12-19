@@ -1,7 +1,11 @@
+import { makeAutoObservable } from 'mobx';
+
 class Buffer {
   constructor(capacity) {
     this.capacity = capacity;
     this.values = [];
+
+    makeAutoObservable(this);
   }
 
   get position() {
