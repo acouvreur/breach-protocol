@@ -5,9 +5,20 @@ html {
   font-size: 62.5%;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-size: 1.6rem;
   font-family: 'Blender Pro', sans-serif;
   background-color: var(--background-color);
   color: var(--yellow);
+  padding: 4%;
+  height: 100vh;
+  margin: 0;
+}
+
+#root {
+  height: 100%;
 }

@@ -37,7 +37,7 @@ const Matrix = ({
     <StyledTable>
       <StyledThead colSpan={matrix.length}>CODE MATRIX</StyledThead>
       {matrix.map((line, x) => (
-        <tr key={shortid.generate()}>
+        <div key={shortid.generate()}>
           {line.map((symbol, y) => (
             <Cell
               key={shortid.generate()}
@@ -53,7 +53,7 @@ const Matrix = ({
               {symbol}
             </Cell>
           ))}
-        </tr>
+        </div>
       ))}
     </StyledTable>
   );

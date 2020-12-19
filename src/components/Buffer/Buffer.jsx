@@ -1,11 +1,11 @@
 import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
-import shortid from 'shortid';
 import styled from 'styled-components';
 import { Cell } from '../_shared';
 
 const StyledAside = styled.aside`
   min-height: 52px;
+  min-width: ${(props) => `calc(60px * ${props.size})`};
   border: 1px solid var(--primary-color);
 `;
 
@@ -18,9 +18,11 @@ const Buffer = ({ capacity, values }) => {
   console.log('Buffer ; ', toJS(values));
 
   return (
-    <StyledAside>
+    <StyledAside size={capacity}>
       {[...Array(capacity)].map((_, i) => {
-        return <Cell key={i}>{values[i]}</Cell>;
+        if (i >= values.length) return null;
+
+        return <Cell key={i}>{values[i] || null}</Cell>;
       })}
     </StyledAside>
   );
