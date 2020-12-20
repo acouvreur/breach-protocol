@@ -1,4 +1,3 @@
-import { toJS } from 'mobx';
 import { observer } from 'mobx-react';
 import styled from 'styled-components';
 import { Cell } from '../_shared';
@@ -15,8 +14,6 @@ const StyledAside = styled.aside`
  * @param {number} props.capacity
  */
 const Buffer = ({ capacity, values }) => {
-  console.log('Buffer ; ', toJS(values));
-
   return (
     <StyledAside size={capacity}>
       {[...Array(capacity)].map((_, i) => {
