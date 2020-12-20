@@ -21,6 +21,7 @@ const StyledCell = styled.span`
     right: 0;
     bottom: 0;
     border: 5px double var(--active-color);
+    box-shadow: 0px 0px 40px 2px #0ff;
   }
 `;
 
