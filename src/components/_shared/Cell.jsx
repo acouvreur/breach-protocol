@@ -20,7 +20,7 @@ const StyledCell = styled.span`
     left: 0;
     right: 0;
     bottom: 0;
-    border: 1px dashed var(--primary-color-dark);
+    border: 5px double var(--active-color);
   }
 `;
 
@@ -44,9 +44,9 @@ const Cell = ({
     if (disabled) {
       return 'var(--disabled-color)';
     } else if (completed) {
-      return 'var(--sucess-color)';
+      return 'var(--success-color)';
     } else if (selected) {
-      return 'var(--active-color)';
+      return 'var(--active-background-color)';
     }
 
     return 'initial';
