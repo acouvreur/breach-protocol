@@ -1,0 +1,15 @@
+:root {
+  --primary-color: #d0eb5c;
+  --primary-color-dark: #62740a;
+
+  --accent-color: #448a91;
+
+  --success-color: #5ceb8c;
+
+  --active-color: rgb(41, 44, 59);
+
+  --disabled-color: #999999;
+  --disabled-color-dark: rgb(65, 65, 65);
+
+  --background-color: rgb(19, 15, 24);
+}

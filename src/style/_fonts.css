@@ -1,0 +1,15 @@
+@import url(https://db.onlinewebfonts.com/c/a082fd3df68a0b54e0d4d794bc38d268?family=Blender+Pro);
+@font-face {
+  font-family: 'Blender Pro';
+  src: url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.eot');
+  src: url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.eot?#iefix')
+      format('embedded-opentype'),
+    url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.woff2')
+      format('woff2'),
+    url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.woff')
+      format('woff'),
+    url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.ttf')
+      format('truetype'),
+    url('https://db.onlinewebfonts.com/t/a082fd3df68a0b54e0d4d794bc38d268.svg#Blender Pro')
+      format('svg');
+}

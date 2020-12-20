@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import { ErrorBoundary } from 'components/_shared';
+import { default as GameModel } from './model/game';
+import Game from './components/Game/Game';
+import Buffer from './model/buffer/buffer';
+
+const GameWrapper = styled.main`
+  border: 1px solid var(--primary-color);
+  height: 100%;
+  padding: 4%;
+`;
 
 function App() {
+  const buffer = new Buffer(8);
+  const sequences = [
+    ['55', '1C'],
+    ['1C', '1C', 'E9'],
+    ['BD', 'E9', '55'],
+  ];
+  const matrix = [
+    ['1C', 'E9', '1C', '55', '1C'],
+    ['E9', '55', '1C', '1C', 'BD'],
+    ['55', 'BD', '1C', 'BD', '55'],
+    ['55', '1C', '55', '55', '1C'],
+    ['E9', '1C', '1C', '1C', '55'],
+  ];
+  const game = new GameModel(buffer, sequences, matrix);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ErrorBoundary>
+      <GameWrapper>
+        <Game game={game} />
+      </GameWrapper>
+    </ErrorBoundary>
   );
 }
 
