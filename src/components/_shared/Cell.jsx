@@ -76,7 +76,7 @@ const Cell = ({
       color={getColor}
       backgroundColor={getBackgroundColor}
       isDisabled={disabled}
-      onClick={disabled ? null : onClick}
+      onClick={disabled || !active ? null : onClick}
       {...props}
     >
       {children}
