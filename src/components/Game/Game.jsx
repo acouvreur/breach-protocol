@@ -1,10 +1,16 @@
 import React from 'react';
+
+import styled from 'styled-components';
 import { observer } from 'mobx-react';
 import Matrix from '../Matrix/Matrix';
 import Buffer from '../Buffer/Buffer';
-import Sequences from '../Sequences/Sequences';
+import Sequence from '../Sequence/Sequence';
 import { Grid } from 'components/_shared';
 import { HighlightedSymbolProvider } from 'providers/HighlightSymbolContext';
+
+const SequenceWrapper = styled.div`
+  border: 1px solid var(--primary-color);
+`;
 
 const Game = ({ game }) => {
   const onCellClick = (x, y) => {
@@ -23,7 +29,17 @@ const Game = ({ game }) => {
         />
         <Grid direction='column' spacing={1}>
           <Buffer {...game.buffer} />
-          <Sequences sequences={game.sequences} />
+          <SequenceWrapper>
+            <Grid direction='column'>
+              {game.sequences.map((sequence, index) => (
+                <Sequence
+                  key={index}
+                  sequence={sequence}
+                  buffer={game.buffer}
+                />
+              ))}
+            </Grid>
+          </SequenceWrapper>
         </Grid>
       </Grid>
     </HighlightedSymbolProvider>
