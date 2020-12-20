@@ -13,6 +13,21 @@ const StyledCell = styled.span`
   color: ${(props) => props.color};
   background-color: ${(props) => props.backgroundColor};
 
+  &:after {
+    ${({ highlighted }) =>
+      highlighted &&
+      `
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px double var(--active-color);
+    box-shadow: 0px 0px 40px 2px #0ff;
+  `}
+  }
+
   &:hover&:after {
     content: '';
     position: absolute;
@@ -29,7 +44,7 @@ const Cell = ({
   children,
   disabled,
   active,
-  hovered,
+  focused,
   completed,
   onClick,
   ...props
@@ -49,12 +64,12 @@ const Cell = ({
       return 'var(--success-color)';
     } else if (active) {
       return 'var(--active-background-color)';
-    } else if (hovered) {
+    } else if (focused) {
       return 'var(--primary-color-transparent)';
     }
 
     return 'initial';
-  }, [disabled, completed, active, hovered]);
+  }, [disabled, completed, active, focused]);
 
   return (
     <StyledCell

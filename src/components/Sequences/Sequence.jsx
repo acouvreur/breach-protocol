@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { observer } from 'mobx-react';
+import HighlightedSymbolContext from 'providers/HighlightSymbolContext';
 import styled from 'styled-components';
 import { Cell } from '../_shared';
 
@@ -14,10 +16,20 @@ const StyledAside = styled.aside`
  * @param {number} props.sequence
  */
 const Sequence = ({ sequence }) => {
+  const { setHighlightedSymbol } = useContext(HighlightedSymbolContext);
+
   return (
     <StyledAside>
-      {sequence.map((_, i) => {
-        return <Cell key={i}>{sequence[i]}</Cell>;
+      {sequence.map((symbol, i) => {
+        return (
+          <Cell
+            onMouseEnter={() => setHighlightedSymbol(symbol)}
+            onMouseLeave={() => setHighlightedSymbol(null)}
+            key={i}
+          >
+            {sequence[i]}
+          </Cell>
+        );
       })}
     </StyledAside>
   );
