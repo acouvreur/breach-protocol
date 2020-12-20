@@ -28,7 +28,8 @@ const StyledCell = styled.span`
 const Cell = ({
   children,
   disabled,
-  selected,
+  active,
+  hovered,
   completed,
   onClick,
   ...props
@@ -46,20 +47,22 @@ const Cell = ({
       return 'var(--disabled-color)';
     } else if (completed) {
       return 'var(--success-color)';
-    } else if (selected) {
+    } else if (active) {
       return 'var(--active-background-color)';
+    } else if (hovered) {
+      return 'var(--primary-color-transparent)';
     }
 
     return 'initial';
-  }, [disabled, completed, selected]);
+  }, [disabled, completed, active, hovered]);
 
   return (
     <StyledCell
       color={getColor}
       backgroundColor={getBackgroundColor}
       isDisabled={disabled}
-      {...props}
       onClick={disabled ? null : onClick}
+      {...props}
     >
       {children}
     </StyledCell>

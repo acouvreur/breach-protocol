@@ -9,7 +9,7 @@ const Game = ({ game }) => {
     game.select(x, y);
   };
   return (
-    <Grid>
+    <Grid spacing={1}>
       <Matrix
         matrix={game.matrix}
         selectedIndex={game.selectedIndex}

@@ -10,6 +10,7 @@ const Grid = styled.div`
 
   & > *:not(:last-child) {
     margin-bottom: ${(props) => `${props.spacing}rem`};
+    margin-right: ${(props) => `${props.spacing}rem`};
   }
 `;
 
