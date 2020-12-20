@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import Buffer from '../Buffer/Buffer';
 import { Grid } from 'components/_shared';
 

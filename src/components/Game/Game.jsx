@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { observer } from 'mobx-react';
 import Matrix from '../Matrix/Matrix';
 import Buffer from '../Buffer/Buffer';
