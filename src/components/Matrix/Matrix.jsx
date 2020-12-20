@@ -1,10 +1,11 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useContext } from 'react';
 import { observer } from 'mobx-react';
 import shortid from 'shortid';
 import styled from 'styled-components';
 
 import { GameSelectionModes } from 'model/game';
 import Cell from '../_shared/Cell';
+import HighlightedSymbolContext from 'providers/HighlightSymbolContext';
 
 const StyledTable = styled.div`
   border: 1px solid var(--primary-color);
@@ -27,6 +28,7 @@ const Matrix = ({
   history,
 }) => {
   const [focusedCell, setFocusedCell] = useState(null);
+  const { highlightedSymbol } = useContext(HighlightedSymbolContext);
 
   const handleCellClick = useCallback(
     (x, y) => () => {
@@ -56,7 +58,7 @@ const Matrix = ({
     [selectedIndex, selectionMode]
   );
 
-  const isCellHovered = useCallback(
+  const isCellFocused = useCallback(
     (x, y) => {
       if (focusedCell) {
         if (x === focusedCell.x && y !== focusedCell.y) return true;
@@ -65,6 +67,13 @@ const Matrix = ({
       return false;
     },
     [focusedCell]
+  );
+
+  const isCellHighlighted = useCallback(
+    (symbol) => {
+      return symbol === highlightedSymbol;
+    },
+    [highlightedSymbol]
   );
 
   return (
@@ -79,7 +88,8 @@ const Matrix = ({
               onMouseEnter={onMouseEnter(x, y)}
               disabled={history.includes(`${x}:${y}`)}
               active={isCellActive(x, y)}
-              hovered={isCellHovered(x, y)}
+              focused={isCellFocused(x, y)}
+              highlighted={isCellHighlighted(symbol)}
             >
               {symbol}
             </Cell>
