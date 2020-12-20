@@ -11,8 +11,8 @@ const Sequences = ({ sequences }) => {
   return (
     <SequenceWrapper>
       <Grid direction='column'>
-        {sequences.map((sequence) => (
-          <Sequence sequence={sequence} />
+        {sequences.map((sequence, index) => (
+          <Sequence key={index} sequence={sequence} />
         ))}
       </Grid>
     </SequenceWrapper>
