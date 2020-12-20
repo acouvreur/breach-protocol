@@ -6,10 +6,11 @@
 
   --success-color: #5ceb8c;
 
-  --active-color: rgb(41, 44, 59);
+  --active-background-color: #292c3b;
+  --active-color: #61dcda;
 
   --disabled-color: #999999;
-  --disabled-color-dark: rgb(65, 65, 65);
+  --disabled-color-dark: #414141;
 
-  --background-color: rgb(19, 15, 24);
+  --background-color: #130f18;
 }
