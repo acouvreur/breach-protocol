@@ -3,6 +3,7 @@ import { ErrorBoundary } from 'components/_shared';
 import { default as GameModel } from './model/game';
 import Game from './components/Game/Game';
 import Buffer from './model/buffer/buffer';
+import MatrixGenerator from 'utils/MatrixGenerator';
 
 const GameWrapper = styled.main`
   border: 1px solid var(--primary-color);
@@ -12,18 +13,10 @@ const GameWrapper = styled.main`
 
 function App() {
   const buffer = new Buffer(8);
-  const sequences = [
-    ['55', '1C'],
-    ['1C', '1C', 'E9'],
-    ['BD', 'E9', '55'],
-  ];
-  const matrix = [
-    ['1C', 'E9', '1C', '55', '1C'],
-    ['E9', '55', '1C', '1C', 'BD'],
-    ['55', 'BD', '1C', 'BD', '55'],
-    ['55', '1C', '55', '55', '1C'],
-    ['E9', '1C', '1C', '1C', '55'],
-  ];
+  const matrixGenerator = new MatrixGenerator(8,5,5);
+  matrixGenerator.generate();
+  const sequences = matrixGenerator.getSequences();
+  const matrix = matrixGenerator.getMatrix();
   const game = new GameModel(buffer, sequences, matrix);
 
   return (
