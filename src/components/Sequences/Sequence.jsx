@@ -25,9 +25,8 @@ const Sequence = ({ sequence }) => {
             onMouseEnter={() => setHighlightedSymbol(symbol)}
             onMouseLeave={() => setHighlightedSymbol(null)}
             key={i}
-          >
-            {sequence[i]}
-          </Cell>
+            symbol={sequence[i]}
+          />
         );
       })}
     </StyledAside>

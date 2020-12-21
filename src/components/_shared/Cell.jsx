@@ -47,6 +47,8 @@ const Cell = ({
   focused,
   completed,
   onClick,
+  symbol,
+  scramble,
   ...props
 }) => {
   const getColor = useCallback(() => {
@@ -70,7 +72,6 @@ const Cell = ({
 
     return 'initial';
   }, [disabled, completed, active, focused]);
-
   return (
     <StyledCell
       color={getColor}
@@ -79,7 +80,7 @@ const Cell = ({
       onClick={disabled || !active ? null : onClick}
       {...props}
     >
-      {children}
+      {scramble ? scramble : symbol}
     </StyledCell>
   );
 };
