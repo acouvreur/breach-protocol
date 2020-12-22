@@ -40,4 +40,26 @@ describe('A Buffer', () => {
 
     expect(buffer.containsSequence(['BC', '1C', 'BC'])).toEqual(false);
   });
+
+  it('should return true if the sequence can be contained in the buffer', () => {
+    const buffer = new Buffer(5);
+
+    buffer.addEntry('BC');
+    buffer.addEntry('1C');
+    buffer.addEntry('1C');
+    buffer.addEntry('BC');
+
+    expect(buffer.canContainSequence(['BC', 'K3'])).toEqual(true);
+  });
+
+  it("should return false if the sequence cannot be contained in the buffer because it's full", () => {
+    const buffer = new Buffer(5);
+
+    buffer.addEntry('BC');
+    buffer.addEntry('1C');
+    buffer.addEntry('1C');
+    buffer.addEntry('BC');
+
+    expect(buffer.canContainSequence(['BC', 'K3', 'K3'])).toEqual(false);
+  });
 });
