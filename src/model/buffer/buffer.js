@@ -31,6 +31,22 @@ class Buffer {
   containsSequence(sequence) {
     return this.values.join('').includes(sequence.join(''));
   }
+
+  canContainSequence(sequence) {
+    const remainingSpace = this.capacity - this.values.length;
+    if (remainingSpace < sequence.length) {
+      for (let i = 1; i <= remainingSpace; i++) {
+        const startOfSequenceNeeded = sequence
+          .slice(0, sequence.length - i)
+          .toString();
+        if (this.values.toString().endsWith(startOfSequenceNeeded)) {
+          return true;
+        }
+      }
+      return false;
+    }
+    return true;
+  }
 }
 
 export default Buffer;
