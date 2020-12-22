@@ -60,9 +60,7 @@ const Cell = ({
   }, [disabled]);
 
   const getBackgroundColor = useCallback(() => {
-    if (disabled) {
-      return 'var(--disabled-color)';
-    } else if (completed) {
+    if (completed) {
       return 'var(--success-color)';
     } else if (active) {
       return 'var(--active-background-color)';
@@ -71,7 +69,8 @@ const Cell = ({
     }
 
     return 'initial';
-  }, [disabled, completed, active, focused]);
+  }, [completed, active, focused]);
+  
   return (
     <StyledCell
       color={getColor}
