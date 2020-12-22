@@ -16,8 +16,8 @@ const sequenceIsInBuffer = (buffer, sequence) =>
 const sequenceCanBeInBuffer = (buffer, sequence) => {
   const remainingSpace = buffer.capacity - buffer.values.length;
   if (remainingSpace < sequence.length) {
-    for (let i = remainingSpace; i < sequence.length; i++) {
-      const startOfSequenceNeeded = sequence.slice(0,sequence.length - i).toString();
+    for (let i = 1; i <= remainingSpace; i++) {
+      const startOfSequenceNeeded = sequence.slice(0, sequence.length - i).toString();
       if (buffer.values.toString().endsWith(startOfSequenceNeeded)) {
         return true;
       }
@@ -25,6 +25,17 @@ const sequenceCanBeInBuffer = (buffer, sequence) => {
     return false;
   }
   return true;
+}
+
+const getNumberOfCorrectSymbols = (buffer, sequence) => {
+  for (let i = sequence.length - 1; i > 0; i--) {
+    if (buffer.values.length >= i) {
+      if (buffer.values.slice(buffer.values.length - i, buffer.values.length).toString() === sequence.slice(0, i).toString()) {
+        return i;
+      }
+    }
+  }
+  return -1;
 }
 
 /**
@@ -35,13 +46,18 @@ const sequenceCanBeInBuffer = (buffer, sequence) => {
 const Sequence = ({sequence, buffer}) => {
   const {setHighlightedSymbol} = useContext(HighlightedSymbolContext);
 
+  let numberOfCorrectSymbols = 0;
   let color = 'black';
   if (sequenceIsInBuffer(buffer, sequence)) {
     color= 'green';
   } else if (!sequenceCanBeInBuffer(buffer, sequence)) {
     color = 'red';
+  } else {
+    numberOfCorrectSymbols = getNumberOfCorrectSymbols(buffer, sequence);
   }
-
+  
+  console.log(numberOfCorrectSymbols);
+  
   return (
     <StyledAside color={color}>
       {sequence.map((symbol, i) => {
@@ -50,6 +66,7 @@ const Sequence = ({sequence, buffer}) => {
             onMouseEnter={() => setHighlightedSymbol(symbol)}
             onMouseLeave={() => setHighlightedSymbol(null)}
             key={i}
+            correct={numberOfCorrectSymbols > i}
           >
             {sequence[i]}
           </Cell>

@@ -11,6 +11,7 @@ const StyledCell = styled.span`
   text-align: center;
   font-size: 4rem;
   color: ${(props) => props.color};
+  ${({correct}) => correct && 'color: blue;'}
   background-color: ${(props) => props.backgroundColor};
 
   &:after {
@@ -47,6 +48,7 @@ const Cell = ({
   focused,
   completed,
   onClick,
+  correct,
   ...props
 }) => {
   const getColor = useCallback(() => {
@@ -56,7 +58,7 @@ const Cell = ({
 
     return 'var(--primary-color)';
   }, [disabled]);
-
+  
   const getBackgroundColor = useCallback(() => {
     if (completed) {
       return 'var(--success-color)';
@@ -75,6 +77,7 @@ const Cell = ({
       backgroundColor={getBackgroundColor}
       isDisabled={disabled}
       onClick={disabled || !active ? null : onClick}
+      correct={correct}
       {...props}
     >
       {disabled ? '[ ]' : children}
