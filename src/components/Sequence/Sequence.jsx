@@ -56,8 +56,6 @@ const Sequence = ({sequence, buffer}) => {
     numberOfCorrectSymbols = getNumberOfCorrectSymbols(buffer, sequence);
   }
   
-  console.log(numberOfCorrectSymbols);
-  
   return (
     <StyledAside color={color}>
       {sequence.map((symbol, i) => {
