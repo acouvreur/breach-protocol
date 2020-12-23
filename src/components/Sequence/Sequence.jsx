@@ -51,10 +51,9 @@ const Sequence = ({ sequence, buffer }) => {
             onMouseEnter={() => setHighlightedSymbol(symbol)}
             onMouseLeave={() => setHighlightedSymbol(null)}
             key={i}
+            symbol={sequence[i]}
             correct={numberOfCorrectSymbols > i}
-          >
-            {sequence[i]}
-          </Cell>
+          />
         );
       })}
     </StyledAside>

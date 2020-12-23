@@ -48,6 +48,8 @@ const Cell = ({
   focused,
   completed,
   onClick,
+  symbol,
+  scramble,
   correct,
   ...props
 }) => {
@@ -70,7 +72,7 @@ const Cell = ({
 
     return 'initial';
   }, [completed, active, focused]);
-
+  
   return (
     <StyledCell
       color={getColor}
@@ -80,7 +82,7 @@ const Cell = ({
       correct={correct}
       {...props}
     >
-      {disabled ? '[ ]' : children}
+      {scramble ? scramble : (disabled ? '[ ]' : symbol)}
     </StyledCell>
   );
 };
