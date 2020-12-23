@@ -52,6 +52,7 @@ const Sequence = ({ sequence, buffer }) => {
             onMouseLeave={() => setHighlightedSymbol(null)}
             key={i}
             symbol={sequence[i]}
+            correct={numberOfCorrectSymbols > i}
           />
         );
       })}

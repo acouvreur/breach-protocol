@@ -82,7 +82,7 @@ const Cell = ({
       correct={correct}
       {...props}
     >
-      {scramble ? scramble : symbol}
+      {scramble ? scramble : (disabled ? '[ ]' : symbol)}
     </StyledCell>
   );
 };
