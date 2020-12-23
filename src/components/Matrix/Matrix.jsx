@@ -1,4 +1,4 @@
-import { useCallback, useState, useContext } from 'react';
+import { useCallback, useState, useContext, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import shortid from 'shortid';
 import styled from 'styled-components';
@@ -15,6 +15,15 @@ const StyledThead = styled.div`
   background-color: var(--primary-color);
 `;
 
+function getRandomId() {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  for (let i = 0; i < 2; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
 /**
  *
  * @param {Object} props
@@ -29,6 +38,18 @@ const Matrix = ({
 }) => {
   const [focusedCell, setFocusedCell] = useState(null);
   const { highlightedSymbol } = useContext(HighlightedSymbolContext);
+  const [scramble, setScramble] = useState(null);
+
+  useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setScramble(i);
+      if (++i === 10) {
+        clearInterval(interval);
+        setScramble(null);
+      }
+    }, 40);
+  }, []);
 
   const handleCellClick = useCallback(
     (x, y) => () => {
@@ -90,9 +111,9 @@ const Matrix = ({
               active={isCellActive(x, y)}
               focused={isCellFocused(x, y)}
               highlighted={isCellHighlighted(symbol)}
-            >
-              {symbol}
-            </Cell>
+              symbol={symbol}
+              scramble={scramble ? getRandomId(2) : null}
+            />
           ))}
         </div>
       ))}
