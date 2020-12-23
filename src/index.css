@@ -20,5 +20,60 @@ body {
 }
 
 #root {
-  height: 100%;
+  animation: glitch 30s linear infinite;
+}
+
+@keyframes glitch{
+  9.4% {
+    transform: none;
+    opacity: 1;
+  }
+  9.5% {
+    transform: skew(-0.4deg, -0.7deg);
+    opacity: 0.75;
+  }
+  9.6% {
+    transform: none;
+    opacity: 1;
+  }
+  30.4% {
+    transform: none;
+    opacity: 1;
+  }
+  30.5% {
+    transform: skew(0.7deg, -0.1deg);
+    opacity: 0.75;
+  }
+  30.6% {
+    transform: none;
+    opacity: 1;
+  }
+  55.4% {
+    transform: none;
+    opacity: 1;
+  }
+  55.5% {
+    transform: skew(-0.7deg, 0.2deg);
+    opacity: 0.75;
+  }
+  55.6% {
+    transform: none;
+    opacity: 1;
+  }
+  75.4% {
+    transform: none;
+    opacity: 1;
+  }
+  75.5% {
+    transform: skew(0.3deg, 0.8deg);
+    opacity: 0.75;
+  }
+  75.6% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
 }
