@@ -18,7 +18,7 @@ const StyledThead = styled.div`
 function getRandomId() {
   let result = '';
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-  for (let i = 0; i < 2; i++ ) {
+  for (let i = 0; i < 2; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
   return result;
@@ -82,19 +82,40 @@ const Matrix = ({
   const isCellFocused = useCallback(
     (x, y) => {
       if (focusedCell) {
-        if (x === focusedCell.x && y !== focusedCell.y) return true;
-        if (x !== focusedCell.x && y === focusedCell.y) return true;
+        if (
+          selectionMode === GameSelectionModes.column &&
+          x === focusedCell.x &&
+          y !== focusedCell.y
+        )
+          return true;
+        if (
+          selectionMode === GameSelectionModes.row &&
+          x !== focusedCell.x &&
+          y === focusedCell.y
+        )
+          return true;
+        if (x === focusedCell.x && y === focusedCell.y) return true;
       }
       return false;
     },
-    [focusedCell]
+    [focusedCell, selectionMode]
   );
 
   const isCellHighlighted = useCallback(
-    (symbol) => {
-      return symbol === highlightedSymbol;
+    (symbol, x, y) => {
+      return (
+        symbol === highlightedSymbol ||
+        (focusedCell &&
+          selectionMode === GameSelectionModes.row &&
+          selectedIndex === x &&
+          focusedCell.y === y) ||
+        (focusedCell &&
+          selectionMode === GameSelectionModes.column &&
+          selectedIndex === y &&
+          focusedCell.x === x)
+      );
     },
-    [highlightedSymbol]
+    [focusedCell, highlightedSymbol, selectedIndex, selectionMode]
   );
 
   return (
@@ -110,7 +131,7 @@ const Matrix = ({
               disabled={history.includes(`${x}:${y}`)}
               active={isCellActive(x, y)}
               focused={isCellFocused(x, y)}
-              highlighted={isCellHighlighted(symbol)}
+              highlighted={isCellHighlighted(symbol, x, y)}
               symbol={symbol}
               scramble={scramble ? getRandomId(2) : null}
             />
