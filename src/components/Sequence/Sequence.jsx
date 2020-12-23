@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { observer } from 'mobx-react';
 import HighlightedSymbolContext from 'providers/HighlightSymbolContext';
 import styled from 'styled-components';
@@ -31,6 +31,7 @@ const getNumberOfCorrectSymbols = (buffer, sequence) => {
  * @param {number} props.sequence
  */
 const Sequence = ({ sequence, buffer }) => {
+  const [focusedCell, setFocusedCell] = useState(null);
   const { setHighlightedSymbol } = useContext(HighlightedSymbolContext);
 
   let numberOfCorrectSymbols = 0;
@@ -48,11 +49,18 @@ const Sequence = ({ sequence, buffer }) => {
       {sequence.map((symbol, i) => {
         return (
           <Cell
-            onMouseEnter={() => setHighlightedSymbol(symbol)}
-            onMouseLeave={() => setHighlightedSymbol(null)}
+            onMouseEnter={() => {
+              setHighlightedSymbol(symbol);
+              setFocusedCell(i);
+            }}
+            onMouseLeave={() => {
+              setHighlightedSymbol(null);
+              setFocusedCell(null);
+            }}
             key={i}
             symbol={sequence[i]}
             correct={numberOfCorrectSymbols > i}
+            highlighted={focusedCell === i}
           />
         );
       })}
