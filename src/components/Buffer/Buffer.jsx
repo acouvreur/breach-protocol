@@ -17,7 +17,7 @@ const Buffer = ({ capacity, values }) => {
   return (
     <StyledAside size={capacity}>
       {[...Array(capacity)].map((_, i) => {
-        if (i >= values.length) return null;
+        if (i >= values.length) return <Cell key={i} symbol={''} />;
         return <Cell key={i} symbol={values[i] || null} />;
       })}
     </StyledAside>
