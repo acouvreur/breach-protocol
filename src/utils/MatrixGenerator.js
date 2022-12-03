@@ -1,7 +1,7 @@
 const symbols = ['55', '1C', 'E7', 'BD', 'F9', 'K3', 'L1'];
 
-function getRandomValueFromArray() {
-  return symbols[getRandomInt(0, symbols.length)];
+function getRandomValueFromArray(array) {
+  return array[getRandomInt(0, array.length)];
 }
 
 function getRandomInt(min, max) {
